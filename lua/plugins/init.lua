@@ -1,10 +1,7 @@
+-- these are extra plugins that are
+-- not included in lazyvim
 return {
-  "LazyVim/LazyVim",
-  opts = {
-    defaults = {
-      autocmds = false,
-      -- options = false,
-      keymaps = false,
-    },
-  },
+    { "tpope/vim-repeat" },
+    { "tpope/vim-surround" },
+    { "numToStr/Comment.nvim", config = true },
 }

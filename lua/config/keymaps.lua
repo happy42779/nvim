@@ -2,11 +2,11 @@
 -- Below is person settings.
 
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- setting the leader key to ';'
@@ -65,26 +65,26 @@ map("n", "J", "mzJ`z", { desc = "Merge lines" })
 -- scroll but with cursor not moved
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 map("n", "<C-u>", "<C-U>zz", { desc = "Merge up" })
-map("n", "n", "nzzzv", {desc = "Move to next search"})
-map("n", "N", "nzzzv", {desc = "Move to next search"})
+map("n", "n", "nzzzv", { desc = "Move to next search" })
+map("n", "N", "nzzzv", { desc = "Move to next search" })
 
 -- paste over selected items and keep the copied content
 map("n", "<leader>ax", "<cmd>!chmod +x %<CR>", { desc = "Add x mask" })
-map("x", "<leader>p", "\"_dP", { desc = "paste replace and keep current" })
+map("x", "<leader>p", '"_dP', { desc = "paste replace and keep current" })
+map("n", "<leader>p", '"+p', { desc = "paste replace and keep current" })
 
-map("n", "<leader>y", "\"+y", { desc = "copy to system clipboard" })
-map("v", "<leader>y", "\"+y", { desc = "copy to system clipboard" })
-map("n", "<leader>Y", "\"+Y", { desc = "copy to system clipboard" })
+map("n", "<leader>y", '"+y', { desc = "copy to system clipboard" })
+map("v", "<leader>y", '"+y', { desc = "copy to system clipboard" })
+map("n", "<leader>Y", '"+Y', { desc = "copy to system clipboard" })
 
-map("v", "<leader>d", "\"_d", { desc = "delete and copy to system clipboard" })
-map("n", "<leader>d", "\"_d", { desc = "delete and copy to system clipboard" })
+map("v", "<leader>d", '"_d', { desc = "delete and copy to system clipboard" })
+map("n", "<leader>d", '"_d', { desc = "delete and copy to system clipboard" })
 
 -- fast replace
 map("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- close tabs
 map("n", "<A-w>", "<cmd>bdelete!<CR>", { desc = "Close current buffer" })
-
 
 -- Fast split window and start a terminal
 -- with a set height
