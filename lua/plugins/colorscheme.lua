@@ -1,9 +1,6 @@
 return {
     {
         "LazyVim/LazyVim",
-        -- dependencies = {
-        --     "catppuccin",
-        -- },
         opts = function(_, opts)
             opts.colorscheme = "catppuccin"
             -- disable default settings
@@ -11,7 +8,6 @@ return {
                 autocmds = false,
                 keymaps = false,
             }
-            -- vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
         end,
     },
     {
@@ -24,6 +20,7 @@ return {
                 macchiato = function(macchiato)
                     return {
                         LineNr = { fg = "white" },
+                        Visual = { fg = "#212529" },
                     }
                 end,
             }
