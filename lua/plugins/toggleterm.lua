@@ -16,7 +16,7 @@ return {
         },
     },
     opts = function(_, default_opts)
-        default_opts.size = 10
+        default_opts.direction = "float"
         default_opts.open_mapping = [[<C-\>]]
         -- some keymaps to move between windows
         function _G.set_terminal_keymaps()
