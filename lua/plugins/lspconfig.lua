@@ -35,11 +35,17 @@ return {
                     },
                 },
             },
-            setup = {
-                clangd = function(_, opts)
-                    opts.capabilities.offsetEncoding = { "utf-16" }
-                end,
-            },
+            -- this is done via lazyvim.plugins.extra.lang.clangd
+            -- setup = {
+            --     clangd = function(_, opts)
+            --         opts.capabilities.offsetEncoding = { "utf-16" }
+            --     end,
+            -- },
         },
     },
+    -- disable clangd_extensions
+    -- {
+    --     "p00f/clangd_extensions.nvim",
+    --     enabled = false,
+    -- },
 }
