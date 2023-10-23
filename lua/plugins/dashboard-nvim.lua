@@ -1,9 +1,7 @@
 return {
-    "goolord/alpha-nvim",
-    enabled = false,
+    "nvimdev/dashboard-nvim",
     opts = function()
-        local db = require("alpha.themes.dashboard")
-        local logo = {
+        local logos = {
             {
 
                 [[
@@ -19,10 +17,8 @@ return {
     ████████████████████████████████████████████████████████████████████████████████]],
             },
             {
-
                 [[
-
-			⠀⠀⣠⣴⣶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+		⠀  ⣠⣴⣶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠿⣿⣿⣿⡿⠋⠀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣄⠀⣠⣿⡷⢚⣿⣿⣿⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -40,19 +36,55 @@ return {
 			]],
             },
         }
-
-        db.section.header.type = "text"
-        db.section.header.val = vim.split(logo[2][1], "\n")
-        db.section.header.opts.position = "center"
-        db.section.buttons.val = {
-            db.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-            db.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-            db.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-            db.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-            db.button("q", " " .. " Quit", ":qa<CR>"),
+        local logo = string.rep("\n", 8) .. logos[2][1] .. "\n\n"
+        local opts = {
+            theme = "doom",
+            hide = {
+                -- this is taken care of by lualine
+                -- enabling this messes up the actual laststatus setting after loading a file
+                statusline = false,
+            },
+            config = {
+                header = vim.split(logo, "\n"),
+				-- stylua: ignore
+				center = {
+					{ action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+					{ action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
+					{ action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+					{ action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+					{
+						action = [[lua require("lazyvim.util").telescope.config_files()()]],
+						desc = " Config",
+						icon = " ",
+						key = "c"
+					},
+					{ action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
+					{ action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "x" },
+					{ action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+					{ action = "qa", desc = " Quit", icon = " ", key = "q" },
+				},
+                footer = function()
+                    local stats = require("lazy").stats()
+                    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                    return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+                end,
+            },
         }
-        db.section.buttons.opts.spacing = 1
-        -- header spacing from the top
-        db.opts.layout[1].val = 2
+        for _, button in ipairs(opts.config.center) do
+            button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+            button.key_format = "  %s"
+        end
+
+        -- close Lazy and re-open when the dashboard is ready
+        if vim.o.filetype == "lazy" then
+            vim.cmd.close()
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "DashboardLoaded",
+                callback = function()
+                    require("lazy").show()
+                end,
+            })
+        end
+        return opts
     end,
 }
