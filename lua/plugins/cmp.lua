@@ -36,5 +36,12 @@ return {
             local context = require("cmp.config.context")
             return not context.in_treesitter_capture("comment") and not context.in_syntax_group("comment")
         end
+        opts.sorting = {
+            comparators = {
+                cmp.config.compare.exact,
+                cmp.config.compare.offset,
+                cmp.config.compare.length,
+            },
+        }
     end,
 }
