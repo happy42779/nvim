@@ -104,5 +104,6 @@ return {
                 },
             },
         }
+        return default_opts
     end,
 }

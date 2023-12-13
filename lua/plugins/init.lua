@@ -4,4 +4,7 @@ return {
     { "tpope/vim-repeat", event = "VeryLazy" },
     { "tpope/vim-surround", event = "VeryLazy" },
     { "numToStr/Comment.nvim", config = true },
+
+    -- disables
+    -- { "nvim-lualine/lualine.nvim", enabled = false },
 }
