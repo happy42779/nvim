@@ -47,4 +47,11 @@ return {
             },
         }
     end,
+    opts = {
+        modes = {
+            search = {
+                enabled = false,
+            },
+        },
+    },
 }
