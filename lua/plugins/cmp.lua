@@ -39,8 +39,6 @@ return {
         opts.sorting = {
             comparators = {
                 cmp.config.compare.exact,
-                cmp.config.compare.offset,
-                -- cmp.config.compare.length,
             },
         }
     end,

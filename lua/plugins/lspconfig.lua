@@ -13,7 +13,6 @@ return {
                 enabled = true,
             },
             servers = {
-                jsonls = {},
                 bashls = {},
                 lua_ls = {
                     settings = {
