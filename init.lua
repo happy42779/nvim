@@ -7,3 +7,6 @@ vim.g.mapleader = ";"
 
 package.loaded["lazyvim.config.options"] = true
 require("config.lazy")
+
+vim.opt.cursorline = true
+vim.cmd("highlight CursorLine gui=underline cterm=underline")
