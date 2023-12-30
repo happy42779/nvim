@@ -1,5 +1,5 @@
--- Default autocmds that come with lazyvim.nvim are disabled.
--- Below is person settings.
+-- Default keymaps that come with lazyvim.nvim are disabled.
+-- Below is personal keymaps.
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
@@ -91,6 +91,11 @@ map("n", "<leader>t_", "<cmd>split | resize 20 | term<CR>", { desc = "Open a ter
 map("n", "<leader>t|", "<cmd>vsplit | resize 20 | term<CR>", { desc = "Open a terminal right" })
 
 map("n", "  ", "<cmd>nohlsearch<CR>", { desc = "Clear highlight" })
+
+-- move <C-a> increment to +, <C-x> decrement to -
+map("n", "+", "<C-a>", { desc = "Increment" })
+map("n", "-", "<C-x>", { desc = "Decrement" })
+map("n", "<C-a>", "gg<S-v>G", { desc = "Fast Select" })
 
 -- lsp diagnostics, it's been moved out of lsp config
 local diagnostic_goto = function(next, severity)
