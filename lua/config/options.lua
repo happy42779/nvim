@@ -1,5 +1,5 @@
 -- Default autocmds that come with lazyvim.nvim are disabled.
--- Below is person settings.
+-- Below is personal settings.
 
 vim.opt.number = true
 vim.opt.relativenumber = true
