@@ -14,9 +14,6 @@ vim.g.mapleader = ";"
 -- opens lazy
 map("n", "<leader>lz", "<cmd>Lazy<CR>", { desc = "Toggle Lazy" })
 
--- mapping something easier to reach to backspace
--- map("i", "<A-,>", "<backspace>", {})
-
 -- mapping Esc to something that's close to my thumb
 map("i", "jk", "<Esc>", {})
 
@@ -97,20 +94,23 @@ map("n", "+", "<C-a>", { desc = "Increment" })
 map("n", "-", "<C-x>", { desc = "Decrement" })
 map("n", "<C-a>", "gg<S-v>G", { desc = "Fast Select" })
 
+-- fast backward delettion
+map("n", "d<backspace>", "vbx", { desc = "Delete a word backward" })
+
 -- lsp diagnostics, it's been moved out of lsp config
-local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
-end
-local Util = require("lazyvim.util")
-local mapl = Util.safe_keymap_set
-mapl("n", "<leader>cd", "<cmd>vim.diagnostic.open_float<CR>", { desc = "Line Diagnostics" })
-mapl("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-mapl("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-mapl("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-mapl("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-mapl("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-mapl("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+-- local diagnostic_goto = function(next, severity)
+--     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+--     severity = severity and vim.diagnostic.severity[severity] or nil
+--     return function()
+--         go({ severity = severity })
+--     end
+-- end
+-- local Util = require("lazyvim.util")
+-- local mapl = Util.safe_keymap_set
+-- mapl("n", "<leader>cd", "<cmd>vim.diagnostic.open_float<CR>", { desc = "Line Diagnostics" })
+-- mapl("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+-- mapl("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+-- mapl("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+-- mapl("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+-- mapl("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+-- mapl("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })

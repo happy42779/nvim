@@ -57,4 +57,5 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- disabling lsp client log
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("off")

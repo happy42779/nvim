@@ -29,6 +29,36 @@ return {
             },
         },
     },
+    {
+        "iamcco/markdown-preview.nvim",
+        keys = {
+            { "<leader>cp", false },
+            {
+                "<leader>mp",
+                ft = "markdown",
+                "<Cmd>MarkdownPreviewToggle<CR>",
+                desc = "Toggle Markdown Preview",
+            },
+        },
+    },
+    -- {
+    --     "stevearc/conform.nvim",
+    --     -- keys = {
+    --     -- 	{
+    --     -- 		"<leader>cf",
+    --     -- 		function()
+    --     -- 			require("conform").format({ formatters = { "injected" } })
+    --     -- 		end,
+    --     -- 		mode = { "n", "v" },
+    --     -- 		desc = "Format Injected Langs",
+    --     -- 	}
+    --     -- },
+    --     opts = {
+    --         formatters_by_ft = {
+    --             markdown = { "deno_fmt" },
+    --         },
+    --     },
+    -- },
 
     {
         "LazyVim/LazyVim",
@@ -37,8 +67,8 @@ return {
             opts.colorscheme = "solarized-osaka"
             -- disable default settings
             opts.defaults = {
-                autocmds = false,
-                keymaps = false,
+                -- autocmds = false,
+                -- keymaps = false,
             }
         end,
     },
