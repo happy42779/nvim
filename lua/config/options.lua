@@ -43,7 +43,12 @@ vim.opt.updatetime = 50
 -- vim.opt.list = true
 -- vim.opt.listchars:append("eol:↴")
 -- vim.opt.listchars:append("space:⋅")
+--
 
+-- split to right and below
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+--
 vim.opt.termguicolors = true
 
 -- folding
