@@ -18,16 +18,23 @@ return {
         "rcarriga/nvim-notify",
         opts = {
             background_colour = "#000000",
+            timeout = 5000,
         },
     },
     {
         "folke/noice.nvim",
-        opts = {
-            presets = {
-                command_palette = false,
-                inc_rename = false,
-            },
-        },
+        opts = function(_, opts)
+            table.insert(opts.routes, {
+                filter = {
+                    event = "notify",
+                    find = "No information available",
+                },
+                opts = { skip = true },
+            })
+            opts.presets.command_palette = false
+            opts.presets.inc_rename = false
+            opts.presets.lsp_doc_border = true
+        end,
     },
     {
         "iamcco/markdown-preview.nvim",
