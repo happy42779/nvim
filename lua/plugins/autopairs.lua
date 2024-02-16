@@ -18,7 +18,7 @@ return {
             -- fast_wrap = {},
             fast_wrap = {
                 map = "<A-e>",
-                chars = { "{", "[", "(", '"', "'", "<" },
+                chars = { "{", "[", "(", '"', "'" },
                 pattern = [=[[%'%"%>%]%)%}%,]]=],
                 end_key = "$",
                 keys = "qwertyuiopzxcvbnmasdfghjkl",
