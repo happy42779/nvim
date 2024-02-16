@@ -94,23 +94,14 @@ map("n", "+", "<C-a>", { desc = "Increment" })
 map("n", "-", "<C-x>", { desc = "Decrement" })
 map("n", "<C-a>", "gg<S-v>G", { desc = "Fast Select" })
 
--- fast backward delettion
-map("n", "d<backspace>", "vbx", { desc = "Delete a word backward" })
+-- fast delete within a word, use de if want to delete part of the word
+map("n", "dw", "viwx", { desc = "Delete a word backward" })
+map("n", "<leader>dw", 'viw"_x', { desc = "Delete a whole word, without registering" })
+map("n", "cw", 'viw"_c', { desc = "Delete and edit a whole word" })
 
--- lsp diagnostics, it's been moved out of lsp config
--- local diagnostic_goto = function(next, severity)
---     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
---     severity = severity and vim.diagnostic.severity[severity] or nil
---     return function()
---         go({ severity = severity })
---     end
--- end
--- local Util = require("lazyvim.util")
--- local mapl = Util.safe_keymap_set
--- mapl("n", "<leader>cd", "<cmd>vim.diagnostic.open_float<CR>", { desc = "Line Diagnostics" })
--- mapl("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
--- mapl("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
--- mapl("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
--- mapl("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
--- mapl("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
--- mapl("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+-- change formatting shortcut
+local Util = require("lazyvim.util")
+local smap = Util.safe_keymap_set
+smap({ "n", "v" }, "<space>f", function()
+    Util.format({ force = true })
+end, { desc = "Format" })
