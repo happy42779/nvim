@@ -2,7 +2,9 @@
 -- not included in lazyvim
 return {
     { "tpope/vim-repeat", event = "VeryLazy" },
-    { "tpope/vim-surround", event = "VeryLazy" },
+    -- { "tpope/vim-surround", event = "VeryLazy" },
+    -- using nvim-surround, as vim-surround does not yank <
+    { "kylechui/nvim-surround", event = "VeryLazy", version = "*", config = true },
     { "numToStr/Comment.nvim", config = true },
 
     -- setting themes
@@ -48,24 +50,17 @@ return {
             },
         },
     },
-    -- {
-    --     "stevearc/conform.nvim",
-    --     -- keys = {
-    --     -- 	{
-    --     -- 		"<leader>cf",
-    --     -- 		function()
-    --     -- 			require("conform").format({ formatters = { "injected" } })
-    --     -- 		end,
-    --     -- 		mode = { "n", "v" },
-    --     -- 		desc = "Format Injected Langs",
-    --     -- 	}
-    --     -- },
-    --     opts = {
-    --         formatters_by_ft = {
-    --             markdown = { "deno_fmt" },
-    --         },
-    --     },
-    -- },
+    ----------------------- formatting settings
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = {
+                markdown = { "deno_fmt" },
+                python = { "autopep8" },
+            },
+        },
+    },
+    ---------------------------------------
 
     {
         "LazyVim/LazyVim",
