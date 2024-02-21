@@ -32,6 +32,7 @@ return {
                             desc = "Switch to Source/Header",
                         },
                     },
+                    filetypes = { "c", "cpp", "objc", "objcpp" },
                 },
             },
             -- this is done via lazyvim.plugins.extra.lang.clangd
