@@ -9,7 +9,12 @@ return {
         }
         require("ufo").setup({
             open_fold_hl_timeout = 150,
-            close_fold_kinds = { "imports", "comment" },
+            close_fold_kinds_for_ft = {
+                default = { "imports", "comment" },
+                json = { "array" },
+                -- c = { "comment", "region" },
+                c = { "comment" },
+            },
             preview = {
                 win_config = {
                     border = { "", "─", "", "", "", "─", "", "" },
